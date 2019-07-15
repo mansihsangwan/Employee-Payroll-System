@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        
+        table, td, th {
+            border: 1px solid black;
+        }
+        tr.noBorder td {
+            border: 0;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Salary Slip</title>
+</head>
+<body>
+    <center><table style="width:70%;">
+            <tr>
+                <td>
+                    <center><IMG SRC="/static/css/img/gktcs_new_logo.png" width="200"></center>
+                </td>
+                <td>    
+                    GKTCS Innovations 
+                    </br>
+                    </br>
+                    2nd floor, Sumansudha, Besides OM Hospital,
+                    </br>
+                    Aamchi colony, NDA Pashan Road, Bavdhan
+                    </br>
+                    Pune 411021, Maharashtra, India.
+                    </br>
+                    Contact Person-Mr. Surendra Panpaliya
+                    </br>
+                    Contact no.-9975072320
+                    </br>
+                    </br>
+                    {% for slip in payslip_month %}
+                        Payslip for the Month of {{ slip.payslip_month }}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% for employee_detail in employee_details %}
+            <tr class="noBorder">
+                <td align="left">
+                    Employee ID : {{ employee_detail.employee_id }}
+                    </br>
+                    </br>
+                    Employee Name : {{ employee_detail.first_name }} {{ employee_detail.last_name }}
+                    </br>
+                    </br>
+                    Designation : {{ employee_detail.designation }}
+                    </br>
+                    </br>
+                    DOJ : {{ employee_detail.date_of_joining }}
+                </td>
+            {% endfor %}
+            {% for salary_detail in salary_details %}
+                <td align="left">
+                    Pay Period : {{ salary_detail.pay_period }}
+                    </br>
+                    </br>
+                    Pay Date : {{ salary_detail.pay_date }}
+                    </br>
+                    </br>
+            {% endfor %}
+            {% for employee_detail in employee_details %}
+                    PAN Number : {{ employee_detail.pan_card_number }}
+            {% endfor %}
+                </td>
+            </tr>
+            {% for salary_detail in salary_details %}
+            <tr>
+                <td align="left">
+                    Basic Salary : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {{ salary_detail.basic_salary }}
+                    </br>
+                    </br>
+                    Dearness Allowance : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {{ dearness_allowance }}
+                    </br>
+                    </br>
+                    House Rent Allowance : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {{ house_rent_allowance }}
+                    </br>
+                    </br>
+                    Travelling Allowance : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {{ travelling_allowance }}
+                    </br>
+                    </br>
+                    Food Allowance : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;
+                    {{ food_allowance }}
+                    </br>
+                    </br>
+                    Performance Allowance : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    {{ salary_detail.performance_allowance }}
+                    </br>
+                    </br>
+                    Bonus Allowance : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;
+                    {{ salary_detail.bonus_allowance }}
+                    </br>
+                    </br>
+                    Total Balance : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {{ total_balance }}
+                </td>
+                <td align="left">
+                    Deduction will be written this side
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="left">
+                    Employee Bank Account No. : {{ salary_detail.account_number }}
+                    </br>
+                    </br>
+                    IFSC Code : {{ salary_detail.ifsc_code }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+    </br>
+        Note : This is electronically generated Pay slip hence does not require any signature.
+    </center>
+</body>
+</html>
